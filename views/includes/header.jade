@@ -1,0 +1,30 @@
+//-
+   Created by HaoBo on 2016/5/6.
+//
+    导航栏
+.navbar.navbar-fixed-top.navbar-inverse
+    .container
+        .navbar-header
+            button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target=".nav-collapse")
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand.hidden-sm(href="/") Blog
+        .nav-collapse(role="navigation")
+            ul.nav.navbar-nav
+                li.active
+                    a(href="/") 首页
+            if (user)
+                ul.nav.navbar-nav.navbar-right
+                    li.dropdown
+                        a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{user.username}
+                        ul.dropdown-menu(aria-labelledby="dLabel")
+                            li
+                                a(href='/home') 个人中心
+                            li
+                                a(href='/loginout') 退出
+            else
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href="/login") 请登录

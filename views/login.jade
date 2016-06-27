@@ -1,0 +1,37 @@
+extends layout
+block title
+    title 用户登陆
+block css
+    link(src="../public/stylesheets/login.css")
+block content
+    h1 欢迎登陆
+    if message
+        p.alert.alert-warning=message
+    form.form-horizontal(method="post" action="/login")
+        .control-group
+            label.control-label(for="username") 用户名
+            .controls
+                input#username.input-lg(type="text" name="username")
+        .control-group
+            label.control-label(for="password") 密码
+            .controls
+                input#password.input-lg(type="password" name="password")
+        .form-action
+            button.btn.btn-primary(type="submit") 登陆
+
+        ul
+            li
+                a(href="login/company") 旅游公司登陆
+            li
+                a(href="login/tourist") 旅游局登陆
+
+
+
+
+            //.control-group
+            //    label.control-label(for="user") 用户
+            //        input#user(type="radio" name="type" value="user")
+            //    label.control-label(for="company") 公司
+            //        input#company(type="radio" name="type" value="company")
+            //    label.cotrol-label(for="tourist") 旅游局
+            //        input#tourist(type="radio" name="type" value="tourist")

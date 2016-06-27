@@ -1,0 +1,17 @@
+extends layout
+block title
+	title 某某公司
+//- block css
+block content
+	block list
+		ul
+			li
+				a(href="/company/add") 增加旅游线路
+			li
+				a(href="/company/modification") 修改旅游线路
+			li
+				a(href="/company/look") 查看反馈
+			li
+				a(href="/company/delete") 删除旅游线路
+	block display
+		h1 欢迎进入管理系统	

@@ -1,0 +1,18 @@
+//
+   Created by HaoBo on 2016/5/9.
+
+extends layout
+block title
+    title myBlog
+block content
+    form.well.form-inline.center(method="post" action="/post/news" style="text-align:center")
+        input(type="text" name="content" style="width:300px;margin-right:30px")
+        button.btn.btn-success(type="submit") 发言
+    .container
+        each post, index in posts
+                .col-lg-4
+                    h2
+                        a(href="/u/#{post.username}") #{post.username}说
+                    p.small #{post.time}
+                    p.well #{post.content}
+

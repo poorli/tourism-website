@@ -1,0 +1,22 @@
+extends layout
+block title
+	title 某某旅游局
+//- block css
+block content
+	block list
+		ul
+			li
+				a(href="/tourist/add") 增加景点
+			li
+				a(href="/tourist/modification") 修改景点
+			li
+				a(href="/tourist/look") 查看反馈
+			li
+				a(href="/tourist/delete") 删除景点
+	block display
+		form(method="post" action="/tourist/delete" )
+			select#sight(name="name")
+				each sight, index in sightList
+					option(value="#{sight.name}") #{sight.name}
+				//- option(value="#{sight.name}") #{sight.name} 
+			input#submit(type="submit", name="submit" value="删除景点")			

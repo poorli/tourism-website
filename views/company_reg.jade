@@ -1,0 +1,40 @@
+//
+   Created by HaoBo on 2016/5/6.
+extends layout
+block title
+    title 注册
+block content
+    h1 用户注册
+    if message
+        p.alert.alert-warning=message
+    form.form-horizontal(method="post" action="/reg/company")
+        .control-group
+            label.control-label(for="username") 用户名
+            .controls
+                input#username.input-lg(type="text" name="username")
+                p.help-block 您的账户名，用于登陆和显示
+        .control-group
+            label.control-label(for="password") 密码
+            .controls
+                input#password.input-lg(type="password" name="password")
+        .control-group
+            label.control-label(for="name") 公司名称
+            .controls
+                input#name.input-lg(type="text" name="name")
+        .control-group
+            label.control-label(for="address") 公司地址    
+            .controls
+                input#address.input-lg(type="text" name="address")
+        .control-text
+            label.control-label(for="introduce") 公司介绍
+            .controls
+                input#introduce.input-lg(type="text" name="introduce")                                    
+        //
+            .control-group
+            label.control-label(for="password-repeat") 确认密码
+            .controls
+                input#password-repeat.input-lg(type="password" name="password-repeat")
+        .form-action
+            button.btn.btn-primary(type="submit") 注册
+   
+

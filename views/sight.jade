@@ -1,0 +1,32 @@
+extends layout
+block title
+	title #{sight.name}
+//- block css
+block content
+	form.form-horizontal(method="post" action="/tourist/modification")
+			.control-group
+				label.control-label(for="name") 景点名称 #{sight.name}
+				.controls
+					input#name.input-lg(type="text" name="name" value="#{sight.name}")
+			.control-group
+				label.control-label(for="former_name") 景点名称 #{sight.name}
+				.controls
+					input#former_name.input-lg(type="hidden" name="former_name" value="#{sight.name}")						
+			.control-group
+				label.control-label(for="address") 景点地址
+				.controls
+					input#address.input-lg(type="text" name="address" value="#{sight.address}")
+			.control-group
+				label.control-label(for="price") 景点价格
+				.controls
+					input#price.input-lg(type="text" name="price" value="#{sight.price}")
+			.control-group
+				label.control-label(for="time") 开放时间
+				.controls
+					input#time.input-lg(type="text" name="time" value="#{sight.time}")
+			.control-group
+				label.control-label(for="introduce") 景点介绍
+				.controls
+					input#introduce.input-lg(type="text" name="introduce" value="#{sight.introduce}")
+			.form-action
+				button.btn.btn-primary(type="submit") 修改	

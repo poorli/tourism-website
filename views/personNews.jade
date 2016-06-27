@@ -1,0 +1,13 @@
+//
+   Created by HaoBo on 2016/5/9.
+extends layout
+block title
+    title #{posts[0].username}的动态
+block content
+    .container
+        each post, index in posts
+            .col-lg-4
+                h2
+                    a(href="/u/#{post.username}") #{post.username}说
+                p.small #{post.time}
+                p.well #{post.content}
