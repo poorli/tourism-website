@@ -32,7 +32,7 @@ router.route('/add')
 			req.session.error = "景点存在";
 			res.redirect('/tourist/add');
 		} else {
-			newTourist.insert(Sight, function(result) {
+			newTourist.insertSight(Sight, function(result) {
 				console.log('添加景点成功');
 				res.redirect('/tourist/add');
 			})

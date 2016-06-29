@@ -30,18 +30,26 @@
 };
 
 
-//  User.prototype.insert = function(user, callback) {
-//     MongoClient.connect(url, function (err, db) {
-//         assert.equal(null, err);
-//         var collection = db.collection('sight');
-
-//         collection.insertOne(user, function (err, result) {
-//             assert.equal(err, null);
-//             callback(result);
-//             db.close();
-//         });
-//     });
-// };
+ User.prototype.insertSight = function(user, callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('sight');
+        collection.insertOne(user, function (err, result) {
+            assert.equal(err, null);
+            callback(result);
+            db.close();
+        }); 
+        // collection.findOne(user, function (err, doc) {
+        //      assert.equal(null, doc);
+        //      collection.insertOne(user, function (err, result) {
+        //          assert.equal(err, null);
+        //          callback(result);
+        //          db.close();
+        //      }); 
+        // })
+        
+    });
+};
 
 
 User.prototype.findSight = function find(user,callback) {

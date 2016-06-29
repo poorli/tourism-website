@@ -8,13 +8,13 @@ block content
 			li
 				a(href="/company/add") 增加旅游线路
 			li
-				a(href="/company/modification") 修改旅游线路
+				a(href="/company/modify") 修改旅游线路
 			li
 				a(href="/company/look") 查看反馈
 			li
 				a(href="/company/delete") 删除旅游线路
 	block display
-		form.form-horizontal(method="post" action="/company/add")
+		form#line.form-horizontal(method="post" action="/company/add")
 			.control-group
 				label.control-label(for="name") 路线名称
 				.controls
@@ -23,11 +23,11 @@ block content
 				label.control-label(for="price") 价格
 				.controls
 					input#price.input-lg(type="text" name="price")
-			.sight 景点：						
-				//- label.control-label(for="sight") 景点
-				.controls
-					input#sight.input-lg(type="text" name="sight")
-					span.delete 删除景点
+			.sight						
+				select.sightList(name="sight")
+					each sight, index in sightList
+						option(value="#{sight.name}") #{sight.name}
+				span.delete 删除景点						
 			#add 增加景点						
 			.form-action
 				button.btn.btn-primary(type="submit") 提交路线

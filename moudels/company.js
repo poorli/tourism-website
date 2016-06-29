@@ -41,4 +41,46 @@ Company.prototype.find = function find(user,callback) {
     });
 };
 
+Company.prototype.findLine = function find(user,callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("line");
+
+        collection.find(user).toArray(function (err, docs) {
+            console.log("sucess line");
+            assert.equal(err, null);
+            callback(docs);
+            db.close();
+        });
+    });
+};
+
+Company.prototype.insertLine = function(user, callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('line');
+
+        collection.insertOne(user, function (err, result) {
+            assert.equal(err, null);
+            callback(result);
+            db.close();
+        });
+    });
+};
+
+
+Company.prototype.deleteLine = function(deleteKey,callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("line");
+        // Remove all the document
+        collection.deleteOne(deleteKey, {w:1}, function(err, result) {
+          assert.equal(null, err);
+          assert.equal(1, result.result.n);
+          callback(result);
+          db.close();
+        });
+    });
+};
+
 module.exports = Company;

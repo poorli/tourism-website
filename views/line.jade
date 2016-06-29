@@ -1,0 +1,22 @@
+extends layout
+block title
+	title #{line.name}
+//- block css
+block content
+	form#line.form-horizontal(method="post" action="/company/add")
+		.control-group
+			label.control-label(for="name") 路线名称
+			.controls
+				input#name.input-lg(type="text" name="name")
+		.control-group
+			label.control-label(for="price") 价格
+			.controls
+				input#price.input-lg(type="text" name="price")
+		//- .sight						
+		//- 	select.sightList(name="sight")
+		//- 		each sight, index in sightList
+		//- 			option(value="#{sight.name}") #{sight.name}
+		//- 	span.delete 删除景点						
+		#add 增加景点						
+		.form-action
+			button.btn.btn-primary(type="submit") 提交路线
