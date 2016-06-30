@@ -46,7 +46,7 @@ router.route('/add')
 			res.redirect('/company/add');
 		} else {
 			newCompany.insertLine(newLine, function (result) {
-				 res.redirect('/company/add');
+				res.redirect('/company/add');
 			})
 		}
 	})
@@ -110,43 +110,58 @@ router.route('/modify')
 	})
 })
 .post(function(req, res, next ) {
-	var formerSight = {
+	var formerLine = {
 		name: req.body['former_name']
 	}
-	var newSight = {
+	var newLine = {
 		name: req.body['name'],
-		address: req.body['address'],
+		// address: req.body['address'],
 		price: parseInt(req.body['price']),
-		time: req.body['time'],
-		introduce: req.body['introduce']
+		sight: req.body['sight_name'],
+		// introduce: req.body['introduce']
 	};
-	console.log(newSight);
+	console.log(newLine);
 	// Update the document using an upsert operation, ensuring creation if it does not exist
-	newTourist.modifySight(formerSight, newSight, function(result) {
-		res.redirect('/tourist/');
+	newCompany.modifyLine(formerLine, newLine, function(result) {
+		res.redirect('/company/modify');
 	});
 })
 
 router.route('/line')
 .get(function(req, res, next) {
-	console.log(req.query.name);
-	var findKey = {
-		name: req.query.name
-	}
-	newCompany.findLine(findKey, function(line){
-		if (line.join()) {
-			console.log(line);
-			res.render('line', {
-				line: line[0]
-			});
-		} else {
-			// newTourist.insert(line, function(result) {
-				console.log('添加景点成功');
-				// res.redirect('/tourist/add');
-			// })
-		}
-	})
-
+    console.log(req.query.name);
+    var findKey = {
+        name: req.query.name
+    }
+    newCompany.findLine(findKey, function(line) {
+    	// console.log(line);
+        if (line.join()) {
+            console.log(line);
+            var oldLine = line[0];
+            //找出所有景点供选择路线
+            newTourist.findSight({}, function(sight) {
+                if (sight.join()) {
+                    // console.log('景点存在');
+                    console.log(sight);
+                    res.render('line', {
+                        sightList: sight,
+                        line: oldLine
+                    });
+                } else {
+                    // newTourist.insert(Sight, function(result) {
+                    console.log('添加景点成功');
+                    // res.redirect('/tourist/add');
+                    // })
+                }
+            })
+        } else {
+            // newTourist.insert(line, function(result) {
+            console.log('添加景点成功');
+            // res.redirect('/tourist/add');
+            // })
+        }
+    })
 })
+
 
 module.exports = router;

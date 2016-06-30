@@ -83,4 +83,17 @@ Company.prototype.deleteLine = function(deleteKey,callback) {
     });
 };
 
+Company.prototype.modifyLine = function(formerKey, newKey, callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("line");
+        collection.updateOne(formerKey, newKey, {upsert:true, w: 1}, function(err, result) {
+            assert.equal(null, err);
+            assert.equal(1, result.result.n);
+            db.close();
+            callback(result);
+        });
+    });
+};
+
 module.exports = Company;
