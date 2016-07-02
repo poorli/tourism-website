@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "mongod": "mongod --dbpath moudels/data"
+    "mongod": "mongod --dbpath moudels/data",
+    "mongodb": "mongod --dbpath moudels/export-data",
+    "mongorestore": "mongorestore --d myapp moudels/export-data/myapp" 
   },
   "dependencies": {
     "body-parser": "~1.13.2",
