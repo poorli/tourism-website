@@ -1,0 +1,9 @@
+extends layout
+block title
+	title 景点
+block content
+	.container
+		each sight, index in sightList
+			.col-lg-4
+				h2
+					a(href="/user/sight/?name=#{sight.name}") #{sight.name}

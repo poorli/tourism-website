@@ -15,7 +15,7 @@ var session = require('express-session');
 //var db = require('./moudels/db');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/users');
 var posts = require('./routes/post');
 var login = require('./routes/login');
 var reg = require('./routes/reg');
@@ -75,7 +75,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/post', posts);
 app.use('/login', login);
 app.use('/reg', reg);

@@ -1,0 +1,9 @@
+extends layout
+block title
+	title 预定用户
+block content
+	.container
+		each order, index in orderList
+			.col-lg-4
+				h2
+					span(href="/company/order/info?name=#{order.user}") #{order.user}

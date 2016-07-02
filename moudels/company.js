@@ -6,6 +6,10 @@ var MongoClient = Db.MongoClient;
 var assert = require('assert');
 var url = Db.Setting.url;
 
+var DbOperation = require('./dbOPeration');
+
+var Operation = new DbOperation();
+
 function Company(user) {
 }
 
@@ -95,5 +99,25 @@ Company.prototype.modifyLine = function(formerKey, newKey, callback) {
         });
     });
 };
+
+Company.prototype.findLineOrder = function find(user,callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("order");
+
+        collection.find(user).toArray(function (err, docs) {
+            console.log("sucess line");
+            assert.equal(err, null);
+            callback(docs);
+            db.close();
+        });
+    });
+};
+
+Company.prototype.findLineOrder = function find(condition,callback) {
+    Operation.find(url, "order", condition, callback )
+};
+
+
 
 module.exports = Company;

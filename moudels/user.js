@@ -40,3 +40,45 @@ User.prototype.find = function find(user,callback) {
     });
 };
 
+User.prototype.insertOrder = function(user, callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('order');
+
+        collection.insertOne(user, function (err, result) {
+            assert.equal(err, null);
+            callback(result);
+            db.close();
+        });
+    });
+};
+/**
+ * 查找用户
+ * @param {object} 查找条件
+ * @param {function} 回调函数 参数为查找到的collection
+ * */
+User.prototype.findOrder = function find(user,callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("order");
+
+        collection.find(user).toArray(function (err, docs) {
+            assert.equal(err, null);
+            callback(docs);
+            db.close();
+        });
+    });
+};
+
+User.prototype.inquireSight = function(user,callback) {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection("line");
+
+        collection.find(user).toArray(function (err, docs) {
+            assert.equal(err, null);
+            callback(docs);
+            db.close();
+        });
+    });
+};

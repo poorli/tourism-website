@@ -22,7 +22,7 @@ Base.prototype.insert = function (url, collectionName, insertContent, callback) 
     });
 };
 
-Base.prototype.find = function find(url, condition, collectionName, callback) {
+Base.prototype.find = function(url, collectionName, condition,  callback) {
     MongoClient.connect(url, function (err, db) {
         assert.equal(null, err);
         var collection = db.collection(collectionName);

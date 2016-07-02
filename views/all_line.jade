@@ -1,0 +1,9 @@
+extends layout
+block title
+	title 线路
+block content
+	.container
+		each line, index in lineList
+			.col-lg-4
+				h2
+					a(href="/user/line/?name=#{line.name}") #{line.name}

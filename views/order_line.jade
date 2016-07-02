@@ -1,0 +1,9 @@
+extends layout
+block title
+	title 路线预定情况
+block content
+	.container
+		each line, index in lineList
+			.col-lg-4
+				h2
+					a(href="/company/user/?name=#{line.name}") #{line.name}

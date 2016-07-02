@@ -127,7 +127,7 @@ router.route('/sight')
 	newTourist.findSight(findKey, function(sight){
 		if (sight.join()) {
 			console.log(sight);
-			res.render('sight', {
+			res.render('modify_sight', {
 				sight: sight[0]
 			});
 		} else {

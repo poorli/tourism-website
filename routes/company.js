@@ -94,7 +94,6 @@ router.route('/modify')
 	var sightList;
 	newCompany.findLine({}, function(line){
 		if (line.join()) {
-			// console.log('景点存在');
 			console.log(line);
 			// req.session.lineList = line;
 			// res.redirect('/tourist/add');
@@ -143,7 +142,7 @@ router.route('/line')
                 if (sight.join()) {
                     // console.log('景点存在');
                     console.log(sight);
-                    res.render('line', {
+                    res.render('modify_line', {
                         sightList: sight,
                         line: oldLine
                     });
@@ -155,13 +154,47 @@ router.route('/line')
                 }
             })
         } else {
-            // newTourist.insert(line, function(result) {
-            console.log('添加景点成功');
-            // res.redirect('/tourist/add');
+            console.log('未找到景点');
+        }
+    })
+})
+
+router.route('/order')
+.get(function(req, res, next) {
+	orderLine = {
+		company: req.session.company.username
+	}
+    newCompany.findLine(orderLine, function(line){
+        if (line.join()) {
+            res.render('order_line', {
+                lineList: line
+            });
+        } else {
+            // newTourist.insert(Sight, function(result) {
+                console.log('添加景点成功');
+                // res.redirect('/tourist/add');
             // })
         }
     })
 })
 
+router.route('/user')
+.get(function(req, res, next) {
+	Line = {
+		line: req.query.name
+	}
+    newCompany.findLineOrder(Line, function(order){
+        if (order.join()) {
+            res.render('company_user_info', {
+                orderList: order
+            });
+        } else {
+            // newTourist.insert(Sight, function(result) {
+                console.log('添加景点成功');
+                // res.redirect('/tourist/add');
+            // })
+        }
+    })
+})
 
 module.exports = router;

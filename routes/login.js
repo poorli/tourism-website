@@ -30,7 +30,7 @@ router.route('/')
         if (user.join()) {
             req.session.user = loginUser;
             console.log("login success")
-            res.redirect('/');
+            res.redirect('/user');
         } else {
             req.session.error = "用户名或密码不正确";
             res.redirect('/login');
@@ -52,7 +52,7 @@ router.route('/company')
     console.log("company login");
     newCompany.find(loginUser, function (user) {
         if (user.join()) {
-            req.session.user = loginUser;
+            req.session.company = loginUser;
             console.log("login success");
             res.redirect('/company');
         } else {

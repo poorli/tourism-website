@@ -1,44 +1,36 @@
 extends layout
 block title
-	title 修改景点
+	title #{line.name}
 	//- title #{line.name}
 //- block css
 block content
-	ul
-		li
-			a(href="/company/add") 增加旅游线路
-		li
-			a(href="/company/modify") 修改旅游线路
-		li
-			a(href="/company/look") 查看反馈
-		li
-			a(href="/company/delete") 删除旅游线路
-	form#line.form-horizontal(method="post" action="/company/modify")
-		.control-group
-			label.control-label(for="name") 路线名称
-			.controls
-				input#name.input-lg(type="text" name="name" value="#{line.name}")
+	.control-group
+		label.control-label(for="name") 路线名称
+		.controls
+			input#name.input-lg(type="text" name="name" value="#{line.name}")
+	.control-group
+		label.control-label(for="price") 价格
+		.controls
+			input#price.input-lg(type="text" name="price" value="#{line.price}")
+	each selectedSight, index in line.sight
+		.sight
+			a(href="/user/sight/?name=#{selectedSight}") #{selectedSight}
+	form#line.form-horizontal(method="post" action="/user/order")		
 		.control-group
 			label.control-label(for="former_name") 
 			.controls
-				input#former_name.input-lg(type="hidden" name="former_name" value="#{line.name}")						
-		.control-group
-			label.control-label(for="price") 价格
-			.controls
-				input#price.input-lg(type="text" name="price" value="#{line.price}")
-		each selectedSight, index in line.sight
-			.sight
-				select.sightList(name="sight_name" value="#{selectedSight}")
-					each sight, index in sightList
-						if sight.name==selectedSight
-							option(value="#{sight.name}" selected="selected") #{sight.name}
-						else
-							option(value="#{sight.name}") #{sight.name}
-				span.delete 删除景点							
-		#add 增加景点						
+				input#former_name.input-lg(type="hidden" name="line" value="#{line.name}")
 		.form-action
-			button.btn.btn-primary(type="submit") 提交路线
+			button.btn.btn-primary(type="submit") 预定				
+			//- .sight
+				each sight, index in sightList
+					if sight.name==selectedSight
+						a(href="/user/line/?name=#{line.name}") #{line.name}
+				//- select.sightList(name="sight_name" value="#{selectedSight}")
+
+							//- option(value="#{sight.name}" selected="selected") #{sight.name}
+						//- else
+							//- option(value="#{sight.name}") #{sight.name}
 						//- select.lineList(name="name")
 				
 		//- p #{ selectedSightList}
-	script(src="/javascripts/add_line.js")		
