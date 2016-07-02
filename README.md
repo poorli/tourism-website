@@ -22,6 +22,7 @@ window环境下需要配置环境变量mongod，mongod.exe执行文件在mongobd
 运行 npm run mongodb
 	
 #### 导入数据库
+新开一个命令窗口
 运行 npm run mongorestore
 
 ### 运行项目
