@@ -7,19 +7,20 @@ var bodyParser = require('body-parser');
 
 //session
 var session = require('express-session');
-//ç”¨äºå­˜å‚¨session
+//ÓÃÓÚ´æ´¢session
 //var MongoStore = require('connect-mongodb');
-//dbçš„ä¿¡æ¯
+//dbµÄĞÅÏ¢
 //var setting = require('./moudels/setting');
-//dbå®ä¾‹
+//dbÊµÀı
 //var db = require('./moudels/db');
 
 var routes = require('./routes/index');
 var user = require('./routes/users');
 var posts = require('./routes/post');
 var login = require('./routes/login');
+var loginOut = require('./routes/loginout')
 var reg = require('./routes/reg');
-var tourist = require('./routes/tourist');
+var tourist = require('./routes/tourist1');
 var company =require('./routes/company');
 
 var app = express();
@@ -33,21 +34,23 @@ var Db = require('mongodb').Db,
     db = new Db('myapp', server_config, {}),
     mongoStore = require('connect-mongodb');
 
-//sessioné…ç½®
+//sessionÅäÖÃ
 app.use(session({
-    cookie: { maxAge: 600000},
+    cookie: { maxAge: 60000},
     secret: "foo",
     resave: false,
     saveUninitialized: true,
-    store: new mongoStore({
-        db: db
-    })
+    // store: new mongoStore({
+    //     db: db
+    // })
 }));
 
 //app.use(express.compress());
-//é”™è¯¯ä¿¡æ¯å¤„ç†
+//´íÎóĞÅÏ¢´¦Àí
 app.use(function(req, res, next){
-    res.locals.user = req.session.user;
+    // res.locals.user = req.session.user;
+    // res.locals.company = req.session.company;
+    // res.locals.tourist = req.session.tourist;
     var err = req.session.error;
     delete req.session.error;
     res.locals.message = "";
@@ -56,9 +59,11 @@ app.use(function(req, res, next){
     }
     next();
 });
-//è·¯ç”±ä¸­é—´ä»¶
+//Â·ÓÉÖĞ¼ä¼ş
 app.use(function(req, res, next){
     res.locals.user = req.session.user;
+    res.locals.company = req.session.company;
+    res.locals.tourist = req.session.tourist;
     next();
 })
 
@@ -78,6 +83,7 @@ app.use('/', routes);
 app.use('/user', user);
 app.use('/post', posts);
 app.use('/login', login);
+app.use('/loginout', loginOut);
 app.use('/reg', reg);
 app.use('/tourist', tourist);
 app.use('/company', company);

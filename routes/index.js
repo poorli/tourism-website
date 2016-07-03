@@ -25,6 +25,7 @@ router.get('/', function (req, res, next) {
     }
 });
 
+
         //}
 /*        if (loginType == "company"){
             newCompany.find(loginUser, function(user){
@@ -72,11 +73,11 @@ function authentication(req, res) {
 }
 
 //退出登录
-router.get('/loginout', function (req, res, next) {
-    //退出后清除session
-    req.session.user = null;
-    res.redirect('/');
-});
+// router.get('/loginout', function (req, res, next) {
+//     //退出后清除session
+//     req.session.user = null;
+//     res.redirect('/');
+// });
 
 router.get('/u/:user', function(req, res){
     var post = new Post();

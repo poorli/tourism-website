@@ -9,11 +9,13 @@ var newTourist = new Tourist();
 
 router.route('/')
 .get(function(req, res, next) {
+	authentication(req, res);
 	res.render('company');
 })
 
 router.route('/add')
 .get(function(req, res, next) {
+	authentication(req, res);
 	// newTourist.deleteSight({name:"天安门"});
 	var sightList;
 	//找出所有景点供选择路线
@@ -35,17 +37,20 @@ router.route('/add')
 	})
 })
 .post(function (req, res, next) {
+	authentication(req, res);
 	console.log(req.body);
 	var lineName = {
 		name: req.body['name']
 	}
 	var newLine = req.body;
+	newLine.company = req.session.company.username;
 	newCompany.findLine(lineName, function(line){
-		//路线存在
 		if (line.join()) {
+			req.session.error = "添加线路成功";
 			res.redirect('/company/add');
 		} else {
 			newCompany.insertLine(newLine, function (result) {
+				req.session.error = "添加线路成功";
 				res.redirect('/company/add');
 			})
 		}
@@ -54,9 +59,12 @@ router.route('/add')
 
 router.route('/delete')
 .get(function(req, res, next) {
-	var sightList;
-	//找出所有景点供删除路线
-	newCompany.findLine({}, function(line){
+	authentication(req, res);
+	var lineList = {
+		company: req.session.company.username
+	}
+	//找出所有线路供删除
+	newCompany.findLine(lineList, function(line){
 		if (line.join()) {
 			console.log(line);
 			res.render('company_delete', {
@@ -71,6 +79,7 @@ router.route('/delete')
 	})
 })
 .post(function(req, res, next) {
+	authentication(req, res);
 	var deleteKey = {
 		name: req.body['name']
 	};
@@ -91,24 +100,25 @@ router.route('/delete')
 
 router.route('/modify')
 .get(function(req, res, next) {
-	var sightList;
-	newCompany.findLine({}, function(line){
+	authentication(req, res);
+	var lineList = {
+		company: req.session.company.username
+	}
+	newCompany.findLine(lineList, function(line){
 		if (line.join()) {
 			console.log(line);
-			// req.session.lineList = line;
-			// res.redirect('/tourist/add');
 			res.render('company_modify', {
 				lineList: line
 			});
 		} else {
-			// newTourist.insert(Sight, function(result) {
-				console.log('添加景点成功');
-				// res.redirect('/tourist/add');
-			// })
+				console.log('无线路，请添加');
+				req.session.error = "无线路，请添加";
+				res.redirect('/tourist/');
 		}
 	})
 })
 .post(function(req, res, next ) {
+	authentication(req, res);
 	var formerLine = {
 		name: req.body['former_name']
 	}
@@ -128,28 +138,27 @@ router.route('/modify')
 
 router.route('/line')
 .get(function(req, res, next) {
+	authentication(req, res);
     console.log(req.query.name);
     var findKey = {
         name: req.query.name
     }
     newCompany.findLine(findKey, function(line) {
-    	// console.log(line);
         if (line.join()) {
-            console.log(line);
             var oldLine = line[0];
             //找出所有景点供选择路线
             newTourist.findSight({}, function(sight) {
+            	console.log(sight);
+            	console.log(oldLine.sight);
                 if (sight.join()) {
-                    // console.log('景点存在');
-                    console.log(sight);
-                    res.render('modify_line', {
+                    res.render('line_modify', {
                         sightList: sight,
                         line: oldLine
                     });
                 } else {
                     // newTourist.insert(Sight, function(result) {
                     console.log('添加景点成功');
-                    // res.redirect('/tourist/add');
+                    // res.redirect('/company_looktourist/add');
                     // })
                 }
             })
@@ -161,12 +170,13 @@ router.route('/line')
 
 router.route('/order')
 .get(function(req, res, next) {
+	authentication(req, res);
 	orderLine = {
 		company: req.session.company.username
 	}
     newCompany.findLine(orderLine, function(line){
         if (line.join()) {
-            res.render('order_line', {
+            res.render('line_order', {
                 lineList: line
             });
         } else {
@@ -180,6 +190,7 @@ router.route('/order')
 
 router.route('/user')
 .get(function(req, res, next) {
+	authentication(req, res);
 	Line = {
 		line: req.query.name
 	}
@@ -196,5 +207,13 @@ router.route('/user')
         }
     })
 })
+function authentication(req, res) {
+    if (!req.session.company) {
+        console.log(req.session);
+        //直接访问 home page 时，进行身份验证
+        req.session.error = "请先登录";
+        return res.redirect('/login');
+    }
+}
 
 module.exports = router;

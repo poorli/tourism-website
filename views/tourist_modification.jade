@@ -1,21 +1,10 @@
-extends layout
+extends tourist
 block title
 	title 某某旅游局
-//- block css
-block content
-	block list
-		ul
-			li
-				a(href="/tourist/add") 增加景点
-			li
-				a(href="/tourist/modification") 修改景点
-			li
-				a(href="/tourist/look") 查看反馈
-			li
-				a(href="/tourist/delete") 删除景点
-	block display
-		.container
-			each sight, index in sightList
-				.col-lg-4
-					h2
-						a(href="/tourist/sight/?name=#{sight.name}") #{sight.name}
+	
+block display
+	.container
+		each sight, index in sightList
+			.col-lg-4
+				h2
+					a(href="/tourist/sight/?name=#{sight.name}") #{sight.name}

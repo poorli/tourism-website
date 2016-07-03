@@ -7,14 +7,17 @@ var newTourist = new Tourist();
 
 router.route('/')
 .get(function(req, res, next) {
+	authentication(req, res)
 	res.render('tourist');
 })
 
 router.route('/add')
 .get(function(req, res, next) {
+	authentication(req, res)
 	res.render('tourist_add');
 })
 .post(function(req, res, next) {
+	authentication(req, res)
 	var findKey = {
 		name: req.body['name']
 	};
@@ -33,7 +36,7 @@ router.route('/add')
 			res.redirect('/tourist/add');
 		} else {
 			newTourist.insertSight(Sight, function(result) {
-				req.session.error = "Ìí¼Ó¾°µã³É¹¦";
+				req.session.error = "æ·»åŠ æ™¯ç‚¹æˆåŠŸ";
 				res.redirect('/tourist/add');
 			})
 		}
@@ -42,7 +45,8 @@ router.route('/add')
 
 router.route('/delete')
 .get(function(req, res, next) {
-	// newTourist.deleteSight({name:"Ìì°²ÃÅ"});
+	authentication(req, res)
+	// newTourist.deleteSight({name:"å¤©å®‰é—¨"});
 	var sightList = {
 		tourist: req.session.tourist.username
 	};
@@ -53,15 +57,16 @@ router.route('/delete')
 				sightList: sight
 			});
 		} else {
-				console.log('Ìí¼Ó¾°µã³É¹¦');
-				// req.session.error = "ÎŞ¾°µãĞÅÏ¢£¬ÇëÌí¼Ó¾°µã";
-				// req.session.error = "ÎŞ¾°µãĞÅÏ¢£¬ÇëÌí¼Ó¾°µã";
-				req.session.error = "ÓÃ»§Ãû»òÃÜÂë²»ÕıÈ·";
+				console.log('æ·»åŠ æ™¯ç‚¹æˆåŠŸ');
+				// req.session.error = "æ— æ™¯ç‚¹ä¿¡æ¯ï¼Œè¯·æ·»åŠ æ™¯ç‚¹";
+				// req.session.error = "æ— æ™¯ç‚¹ä¿¡æ¯ï¼Œè¯·æ·»åŠ æ™¯ç‚¹";
+				req.session.error = "ç”¨æˆ·åæˆ–å¯†ç ä¸æ­£ç¡®";
 				res.redirect('/tourist')
 		}
 	})
 })
 .post(function(req, res, next) {
+	authentication(req, res)
 	var deleteKey = {
 		name: req.body['name']
 	}
@@ -69,13 +74,13 @@ router.route('/delete')
 	newTourist.findSight(deleteKey, function(sight){
 		if (sight.join()) {
 			newTourist.deleteSight(deleteKey, function(result) {
-				console.log('É¾³ı¾°µã³É¹¦');
-				req.session.error = "É¾³ı¾°µã³É¹¦";
+				console.log('åˆ é™¤æ™¯ç‚¹æˆåŠŸ');
+				req.session.error = "åˆ é™¤æ™¯ç‚¹æˆåŠŸ";
 				res.redirect('/tourist/delete');
 			})
 		} else {
-			console.log('¾°µã²»´æÔÚ');
-			req.session.error = "¾°µã²»´æÔÚ";
+			console.log('æ™¯ç‚¹ä¸å­˜åœ¨');
+			req.session.error = "æ™¯ç‚¹ä¸å­˜åœ¨";
 			req.redirect('/tourist');
 		}
 	})
@@ -83,24 +88,26 @@ router.route('/delete')
 
 router.route('/modification')
 .get(function(req, res, next) {
+	authentication(req, res)
 	var sightList = {
 		tourist: req.session.tourist.username
 	};
 	newTourist.findSight(sightList, function(sight){
 		if (sight.join()) {
 			console.log(sight);
-			// req.session.error = "ĞŞ¸Ä¾°µã³É¹¦";
+			// req.session.error = "ä¿®æ”¹æ™¯ç‚¹æˆåŠŸ";
 			res.render('tourist_modification', {
 				sightList: sight
 			});
 		} else {
-				console.log('ĞŞ¸Ä¾°µãÊ§°Ü');
-				req.session.error = "ÇëÏÈÌí¼Ó¾°µã³É¹¦";
+				console.log('ä¿®æ”¹æ™¯ç‚¹å¤±è´¥');
+				req.session.error = "è¯·å…ˆæ·»åŠ æ™¯ç‚¹æˆåŠŸ";
 				res.redirect('/tourist');
 		}
 	})
 })
 .post(function(req, res, next ) {
+	authentication(req, res)
 	var formerSight = {
 		name: req.body['former_name']
 	}
@@ -114,13 +121,14 @@ router.route('/modification')
 	console.log(newSight);
 	// Update the document using an upsert operation, ensuring creation if it does not exist
 	newTourist.modifySight(formerSight, newSight, function(result) {
-		req.session.error = "ĞŞ¸Ä¾°µã³É¹¦";
+		req.session.error = "ä¿®æ”¹æ™¯ç‚¹æˆåŠŸ";
 		res.redirect('/tourist');
 	});
 })
 
 router.route('/sight')
 .get(function(req, res, next) {
+	authentication(req, res)
 	console.log(req.query.name);
 	var findKey = {
 		name: req.query.name
@@ -133,12 +141,21 @@ router.route('/sight')
 			});
 		} else {
 			// newTourist.insert(Sight, function(result) {
-				console.log('Ìí¼Ó¾°µã³É¹¦');
+				console.log('æ·»åŠ æ™¯ç‚¹æˆåŠŸ');
 				// res.redirect('/tourist/add');
 			// })
 		}
 	})
 
 })
+
+function authentication(req, res) {
+    if (!req.session.tourist) {
+        console.log(req.session);
+        //ç›´æ¥è®¿é—® home page æ—¶ï¼Œè¿›è¡Œèº«ä»½éªŒè¯
+        req.session.error = "è¯·å…ˆç™»å½•";
+        return res.redirect('/login');
+    }
+}
 
 module.exports = router;

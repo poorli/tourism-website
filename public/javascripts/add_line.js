@@ -12,7 +12,6 @@ addSight.addEventListener('click', function(){
 	this.parentNode.insertBefore(sight , this);	
 }, false);
 
-// var deleteList = document.getElementsByClassName("delete")[0];
 
 var sightContainer = document.getElementById('line');
 

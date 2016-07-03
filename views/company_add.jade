@@ -1,35 +1,61 @@
-extends layout
+extends company
 block title
 	title 某某公司
-//- block css
-block content
-	block list
-		ul
-			li
-				a(href="/company/add") 增加旅游线路
-			li
-				a(href="/company/modify") 修改旅游线路
-			li
-				a(href="/company/look") 查看反馈
-			li
-				a(href="/company/delete") 删除旅游线路
-	block display
-		form#line.form-horizontal(method="post" action="/company/add")
-			.control-group
-				label.control-label(for="name") 路线名称
-				.controls
-					input#name.input-lg(type="text" name="name")
-			.control-group
-				label.control-label(for="price") 价格
-				.controls
-					input#price.input-lg(type="text" name="price")
-			.sight						
-				select.sightList(name="sight")
-					each sight, index in sightList
-						option(value="#{sight.name}") #{sight.name}
-				span.delete 删除景点						
-			#add 增加景点						
-			.form-action
-				button.btn.btn-primary(type="submit") 提交路线
 
-	script(src="/javascripts/add_line.js")							
+block display
+	form#line.form-horizontal(method="post" action="/company/add")
+		.control-group
+			label.control-label(for="name") 路线名称
+			.controls
+				input#name.input-lg(type="text" name="name" required)
+		.control-group
+			label.control-label(for="address") 地点
+			.controls
+				input#address.input-lg(type="text" name="address" required)
+		.control-group
+			label.control-label(for="startAddress" required) 起点
+			.controls
+				input#startAddress.input-lg(type="text" name="startAddress")
+		.control-group
+			label.control-label(for="endAddress") 终点
+			.controls
+				input#endAddress.input-lg(type="text" name="endAddress" required)
+		.control-group
+			label.control-label(for="days") 旅游天数
+			.controls
+				input#days.input-lg(type="number" name="days")
+		.control-group
+			label.control-label(for="startTime" required) 出发时间
+			.controls
+				- var newDate = new Date()
+				- var month = newDate.getMonth()+1
+				- var day = newDate.getDate()
+				if month < 10
+					- month = "0"+month
+				if day < 10
+					- day = "0"+day	
+				- var dateString = newDate.getFullYear()+"-"+month+"-"+day
+				input#startTime.input-lg(type="date" name="startTime" min=dateString) 
+		.control-group
+			label.control-label(for="number") 人数限制
+			.controls
+				input#number.input-lg(type="number" name="number" min="1" required)
+		.control-group
+			label.control-label(for="price" required) 价格
+			.controls
+				input#price.input-lg(type="number" name="price")
+		.control-group
+			label.control-label(for="stay") 住宿信息
+			.controls
+				input#stay.input-lg(type="text" name="stay")		
+		.sight#line						
+			select.sightList(name="sight" required)
+				each sight in sightList
+					option(value="#{sight.name}") #{sight.name}
+			span.delete 删除景点						
+		#add 增加景点						
+		.form-action
+			button.btn.btn-primary(type="submit") 提交路线
+
+block js
+	script(src="/javascripts/add_line.js")						

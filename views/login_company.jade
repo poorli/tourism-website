@@ -1,0 +1,11 @@
+extends login
+block title
+    title 旅游公司登陆
+block condition
+    - var loginType = "company"
+block link
+    ul
+        li
+            a(href="/login") 用户登陆
+        li
+            a(href="/login/tourist") 旅游局登陆

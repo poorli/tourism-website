@@ -19,6 +19,7 @@ router.route('/')
         user: req.session.user
     });
 })
+router.route('/user')
 .post(function (req, res, next) {
     var loginUser = {
         username: req.body['username'],
@@ -41,7 +42,7 @@ router.route('/')
 
 router.route('/company')
 .get(function(req, res, next) {
-	res.render('company_login');
+	res.render('login_company');
 })
 .post(function (req, res, next) {
     var loginUser = {
@@ -64,20 +65,17 @@ router.route('/company')
 
 router.route('/tourist')
 .get(function(req, res, next) {
-	res.render('tourist_login');
+	res.render('login_tourist');
 })
 .post(function (req, res, next) {
     var loginUser = {
         username: req.body['username'],
         password: req.body['password']
     };
-    console.log("tourist");
-    // console.log("company login");
     console.log(loginUser);
     newTourist.find(loginUser, function (user) {
-    	console.log(user);
         if (user.join()) {
-            req.session.user = loginUser;
+            req.session.tourist = loginUser;
             console.log("login success");
             res.redirect('/tourist');
         } else {
@@ -86,6 +84,5 @@ router.route('/tourist')
         }
     });
 });
-
 
 module.exports = router; 

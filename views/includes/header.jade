@@ -15,6 +15,7 @@
             //- ul.nav.navbar-nav
             //-     li.active
             //-         a(href="/") 首页
+            case
             if (user)
                 ul.nav.navbar-nav.navbar-right
                     li.dropdown
@@ -23,8 +24,28 @@
                             li
                                 a(href='/home') 个人中心
                             li
-                                a(href='/loginout') 退出
+                                a(href='/loginout/user') 退出
             else
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href="/login") 请登录
+                if (tourist)
+                    ul.nav.navbar-nav.navbar-right
+                        li.dropdown
+                            a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{tourist.username}
+                            ul.dropdown-menu(aria-labelledby="dLabel")
+                                li
+                                    a(href='/home') 个人中心
+                                li
+                                    a(href='/loginout/tourist') 退出
+                else
+                    if (company)
+                        ul.nav.navbar-nav.navbar-right
+                            li.dropdown
+                                a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{company.username}
+                                ul.dropdown-menu(aria-labelledby="dLabel")
+                                    li
+                                        a(href='/home') 个人中心
+                                    li
+                                        a(href='/loginout/company') 退出
+                    else
+                        ul.nav.navbar-nav.navbar-right
+                            li
+                                a(href="/login") 请登录                                                                

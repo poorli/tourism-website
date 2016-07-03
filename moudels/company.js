@@ -115,7 +115,7 @@ Company.prototype.findLineOrder = function find(user,callback) {
 };
 
 Company.prototype.findLineOrder = function find(condition,callback) {
-    Operation.find(url, "order", condition, callback )
+    Operation.find(url, "order", condition, callback );
 };
 
 

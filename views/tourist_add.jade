@@ -6,6 +6,10 @@ block display
 			.controls
 				input#name.input-lg(type="text" name="name")
 		.control-group
+			label.control-label(for="item") 景点项目
+			.controls
+				input#item.input-lg(type="text" name="item")					
+		.control-group
 			label.control-label(for="address") 景点地址
 			.controls
 				input#address.input-lg(type="text" name="address")
@@ -16,33 +20,10 @@ block display
 		.control-group
 			label.control-label(for="time") 开放时间
 			.controls
-				input#time.input-lg(type="date" name="time")
+				input#time.input-lg(type="text" name="time" placeholder="请输入正确的开放时间")
 		.control-group
 			label.control-label(for="introduce") 景点介绍
 			.controls
 				input#introduce.input-lg(type="text" name="introduce")
 		.form-action
 			button.btn.btn-primary(type="submit") 添加景点							
-	//- form.form-horizontal(method="post" action="/tourist/add")
-	//- 	.control-group
-	//- 		label.control-label(for="name") 景点名称
-	//- 		.controls
-	//-            input#name.input-lg(type="text" name="name")
-	//-     .control-group
-	//-         label.control-label(for="address") 景点地址    
-	//-         .controls
-	//-             input#address.input-lg(type="text" name="address")
-	//-     .control-group
-	//-         label.control-label(for="price") 景点价格    
-	//-         .controls
-	//-             input#price.input-lg(type="text" name="price")
-	//-     .control-text
-	//-         label.control-label(for="time") 开放时间
-	//-         .controls
-	//-             input#time.input-lg(type="text" name="time")
-	//-     .control-text
-	//-         label.control-label(for="introduce") 景点介绍
-	//-         .controls
-	//-             input#introduce.input-lg(type="text" name="introduce")
-	//-             	.form-action
-	//-         button.btn.btn-primary(type="submit") 添加	

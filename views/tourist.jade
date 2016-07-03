@@ -13,5 +13,8 @@ block content
 				a(href="/tourist/look") 查看反馈
 			li
 				a(href="/tourist/delete") 删除景点
-	block display
-		h1 欢迎进入管理系统				
+	.right
+		if message
+			p.alert.alert-warning=message			
+		block display
+			h1 欢迎进入管理系统				

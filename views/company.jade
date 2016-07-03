@@ -13,5 +13,9 @@ block content
 				a(href="/company/order") 查看反馈
 			li
 				a(href="/company/delete") 删除旅游线路
-	block display
-		h1 欢迎进入管理系统	
+				
+	.right
+		if message
+			p.alert.alert-warning=message			
+		block display
+			h1 欢迎进入管理系统

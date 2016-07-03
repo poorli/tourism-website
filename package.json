@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "mongod": "mongod --dbpath moudels/data",
     "mongodb": "mongod --dbpath moudels/export-data",
-    "mongorestore": "mongorestore -d myapp moudels/export-data/myapp" 
+    "mongorestore": "mongorestore -d myapp moudels/export-data/myapp",
+    "mongodump": "mongodump -d myapp -o moudels/export-data/"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

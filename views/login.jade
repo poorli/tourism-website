@@ -7,7 +7,10 @@ block content
     h1 欢迎登陆
     if message
         p.alert.alert-warning=message
-    form.form-horizontal(method="post" action="/login")
+
+    block condition
+        - var loginType = "user"
+    form.form-horizontal(method="post" action="/login/#{loginType}")
         .control-group
             label.control-label(for="username") 用户名
             .controls
@@ -18,12 +21,12 @@ block content
                 input#password.input-lg(type="password" name="password")
         .form-action
             button.btn.btn-primary(type="submit") 登陆
-
+    block link
         ul
             li
-                a(href="login/company") 旅游公司登陆
+                a(href="/login/company") 旅游公司登陆
             li
-                a(href="login/tourist") 旅游局登陆
+                a(href="/login/tourist") 旅游局登陆
 
 
 
