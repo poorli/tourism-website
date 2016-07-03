@@ -1,0 +1,33 @@
+body{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.login-form .login-field {
+    border-color: transparent;
+    font-size: 17px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    text-indent: 3px;
+    width: 299px;
+}
+input{
+	color: black;
+}
+.login{
+	/*align-self: center;*/
+	width: 940px;
+	margin: 0 auto;
+	/*position: absolute;*/
+
+}
+/*
+.fui-man-16:before {
+    content: "";
+}
+
+.fui-lock-16:before {
+    content: "\e009";
+}*/

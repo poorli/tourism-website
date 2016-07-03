@@ -20,6 +20,9 @@ router.route('/')
     });
 })
 router.route('/user')
+.get(function (req, res, next) {
+    res.render('login');
+})
 .post(function (req, res, next) {
     var loginUser = {
         username: req.body['username'],

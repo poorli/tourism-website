@@ -1,51 +1,43 @@
-//-
-   Created by HaoBo on 2016/5/6.
-//
-    导航栏
-.navbar.navbar-fixed-top.navbar-inverse
-    .container
+nav.navbar.navbar-default
+    .container-fluid
         .navbar-header
-            button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target=".nav-collapse")
+            button.navbar-toggle.collapsed(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
                 span.sr-only Toggle navigation
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            a.navbar-brand.hidden-sm(href="/") 首页
-        .nav-collapse(role="navigation")
-            //- ul.nav.navbar-nav
-            //-     li.active
-            //-         a(href="/") 首页
-            case
+            a.navbar-brand.hidden-sm(href="/") 友友
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li.active: a(href="/"): span.sr-only 首页
+                li: a(href="") 线路
+                li: a(href="") 景点   
             if (user)
                 ul.nav.navbar-nav.navbar-right
                     li.dropdown
-                        a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{user.username}
-                        ul.dropdown-menu(aria-labelledby="dLabel")
-                            li
-                                a(href='/home') 个人中心
-                            li
-                                a(href='/loginout/user') 退出
+                        a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{user.username}
+                            span.caret
+                        ul.dropdown-menu
+                            li: a(href='/home') 个人中心
+                            li: a(href='/loginout/user') 退出
             else
-                if (tourist)
+                if (company)
                     ul.nav.navbar-nav.navbar-right
                         li.dropdown
-                            a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{tourist.username}
-                            ul.dropdown-menu(aria-labelledby="dLabel")
-                                li
-                                    a(href='/home') 个人中心
-                                li
-                                    a(href='/loginout/tourist') 退出
+                            a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"): span.caret #{company.username}
+                            ul.dropdown-menu
+                                li: a(href='/home') 个人中心
+                                li: a(href='/loginout/company') 退出
                 else
-                    if (company)
+                    if (tourist)
                         ul.nav.navbar-nav.navbar-right
                             li.dropdown
-                                a#dLabel(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{company.username}
-                                ul.dropdown-menu(aria-labelledby="dLabel")
-                                    li
-                                        a(href='/home') 个人中心
-                                    li
-                                        a(href='/loginout/company') 退出
+                                a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"): span.caret #{tourist.username}
+                                ul.dropdown-menu
+                                    li: a(href='/home') 个人中心
+                                    li: a(href='/loginout/tourist') 退出
                     else
                         ul.nav.navbar-nav.navbar-right
-                            li
-                                a(href="/login") 请登录                                                                
+                            li: a(href="/login") 登录
+                            li: a(href="reg") 注册

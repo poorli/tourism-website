@@ -8,29 +8,27 @@ html
         //- link(rel='stylesheet', href='/stylesheets/login.css') 
     body
         block content
+            if message
+                p.alert.alert-warning=message
             block condition
                 - var loginType = "user"
-                - var anotherType = "company"
-                - var loginTypeName = "旅游公司登陆"
-            .login(style="")
+            .login(style="width:940px")
                 .login-screen
                     .login-icon
                         img(src="/bower_components/flat/img/login/icon.png" alt="Welcome to youyou")
                         h4 欢迎登陆
                             small 友友
-                    .login-form    
+                    .login-form                
                         form(method="post" action="/login/#{loginType}")
                             .control-group
-                                input#login-name.login-field.input-larget(type="text" name="username" placeholder="用户名")
+                                input#login-name.login-field.input-larget(type="text" name="username" placeholder="用户名" style="")
                                 label.login-field-icon.fui-man-16(for="login-name")
                             .control-group
-                                input#login-pass.login-field.input-larget(type="password" name="password" placeholder="密码")
+                                input#login-pass.login-field.input-larget(type="text" name="password" placeholder="密码" style="")
                                 label.login-field-icon.fui-man-16(for="login-pass")
-                            button.btn.btn-primary.btn-large.btn-block(type="submit") 登陆
+                            a.btn.btn-primary.btn-large.btn-block(type="submit") 登陆
                         block link
-                            a.login-link(href="/login/#{anotherType}") #{loginTypeName}
-            if message
-                .btn.btn-large.btn-block.btn-warning(style="width:940px;margin:0 auto")=message  
+                            a.login-link(href="/login/company") 旅游公司登陆
                             //- a.login-link(href="/login/tourist") 旅游局登陆 
         include ./includes/footer
 

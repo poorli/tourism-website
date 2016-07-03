@@ -1,10 +1,11 @@
 extends layout
 block title
-    title 友友网
+	title 友友网
 block content
-    .jumbotron.masthead
-        .container
-            h1 欢迎来到友友网
-                p.masthead-buttoon-links
-                    a.btn.btn-primary.btn-shadow(href="/login") 登录
-                    a.btn.btn-default(href="/reg") 立即注册
+	.jumbotron
+		.page-header
+			h1 欢迎来到友友网
+			p 这是一个致力于解决旅游生态建设的网站，致力于为旅游局、旅游公司和用户服务
+		p.masthead-buttoon-link
+			//- a.btn.btn-large.btn-block(href="/login") 登录
+			a.btn.btn-large.btn-block.btn-primary(href="/reg" style="width:150px") 立即注册

@@ -15,11 +15,14 @@ router.route('/')
     res.render('res');
 })
 .post(function (req, res, next) {
+    User = {
+        username: req.body['username']
+    }
     var regUser = {
         username: req.body['username'],
         password: req.body['password']
     };
-    newUser.find(regUser, function (user) {
+    newUser.find(User, function (user) {
         if (user.join()) {
             console.log("用户名存在");
             req.session.error = "账户已存在";
