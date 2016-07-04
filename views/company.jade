@@ -3,19 +3,21 @@ block title
 	title 某某公司
 //- block css
 block content
+	.container
 	block list
-		ul
-			li
-				a(href="/company/add") 增加旅游线路
-			li
-				a(href="/company/modify") 修改旅游线路
-			li
-				a(href="/company/order") 查看反馈
-			li
-				a(href="/company/delete") 删除旅游线路
+		.col-lg-3
+			ul.todo.mrm
+				li
+					a(href="/company/add") 增加旅游线路
+				li
+					a(href="/company/modify") 修改旅游线路
+				li
+					a(href="/company/order") 查看反馈
+				li
+					a(href="/company/delete") 删除旅游线路
 				
-	.right
-		if message
-			p.alert.alert-warning=message			
-		block display
-			h1 欢迎进入管理系统
+		.col-lg-9
+			if message
+				p.alert.alert-warning=message			
+			block display
+				h1 欢迎进入管理系统

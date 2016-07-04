@@ -4,3 +4,12 @@ body {
 a:hover{
   cursor: pointer;
 }
+
+ul,li {
+	list-style: none;
+}
+
+.navbar,
+.navbar-default{
+	margin-bottom: 10px;
+}

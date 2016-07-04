@@ -33,7 +33,7 @@ router.route('/add')
 			res.redirect('/tourist/add');
 		} else {
 			newTourist.insertSight(Sight, function(result) {
-				req.session.error = "添加景点成功";
+				req.session.error = "娣诲姞鏅偣鎴愬姛";
 				res.redirect('/tourist/add');
 			})
 		}
@@ -42,7 +42,7 @@ router.route('/add')
 
 router.route('/delete')
 .get(function(req, res, next) {
-	// newTourist.deleteSight({name:"天安门"});
+	// newTourist.deleteSight({name:"脤矛掳虏脙脜"});
 	var sightList = {
 		tourist: req.session.tourist.username
 	};
@@ -53,10 +53,10 @@ router.route('/delete')
 				sightList: sight
 			});
 		} else {
-				console.log('添加景点成功');
-				// req.session.error = "无景点信息，请添加景点";
-				// req.session.error = "无景点信息，请添加景点";
-				req.session.error = "用户名或密码不正确";
+				console.log('脤铆录脫戮掳碌茫鲁脡鹿娄');
+				// req.session.error = "脦脼戮掳碌茫脨脜脧垄拢卢脟毛脤铆录脫戮掳碌茫";
+				// req.session.error = "脦脼戮掳碌茫脨脜脧垄拢卢脟毛脤铆录脫戮掳碌茫";
+				req.session.error = "脫脙禄搂脙没禄貌脙脺脗毛虏禄脮媒脠路";
 				res.redirect('/tourist')
 		}
 	})
@@ -69,13 +69,13 @@ router.route('/delete')
 	newTourist.findSight(deleteKey, function(sight){
 		if (sight.join()) {
 			newTourist.deleteSight(deleteKey, function(result) {
-				console.log('删除景点成功');
-				req.session.error = "删除景点成功";
+				console.log('脡戮鲁媒戮掳碌茫鲁脡鹿娄');
+				req.session.error = "脡戮鲁媒戮掳碌茫鲁脡鹿娄";
 				res.redirect('/tourist/delete');
 			})
 		} else {
-			console.log('景点不存在');
-			req.session.error = "景点不存在";
+			console.log('戮掳碌茫虏禄麓忙脭脷');
+			req.session.error = "戮掳碌茫虏禄麓忙脭脷";
 			req.redirect('/tourist');
 		}
 	})
@@ -89,13 +89,13 @@ router.route('/modification')
 	newTourist.findSight(sightList, function(sight){
 		if (sight.join()) {
 			console.log(sight);
-			// req.session.error = "修改景点成功";
+			// req.session.error = "脨脼赂脛戮掳碌茫鲁脡鹿娄";
 			res.render('tourist_modification', {
 				sightList: sight
 			});
 		} else {
-				console.log('修改景点失败');
-				req.session.error = "请先添加景点成功";
+				console.log('脨脼赂脛戮掳碌茫脢搂掳脺');
+				req.session.error = "脟毛脧脠脤铆录脫戮掳碌茫鲁脡鹿娄";
 				res.redirect('/tourist');
 		}
 	})
@@ -114,7 +114,7 @@ router.route('/modification')
 	console.log(newSight);
 	// Update the document using an upsert operation, ensuring creation if it does not exist
 	newTourist.modifySight(formerSight, newSight, function(result) {
-		req.session.error = "修改景点成功";
+		req.session.error = "脨脼赂脛戮掳碌茫鲁脡鹿娄";
 		res.redirect('/tourist');
 	});
 })
@@ -133,7 +133,7 @@ router.route('/sight')
 			});
 		} else {
 			// newTourist.insert(Sight, function(result) {
-				console.log('添加景点成功');
+				console.log('脤铆录脫戮掳碌茫鲁脡鹿娄');
 				// res.redirect('/tourist/add');
 			// })
 		}

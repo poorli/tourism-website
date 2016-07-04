@@ -139,7 +139,8 @@ router.get('/inquire',function(req, res, next) {
 })
 router.post('/inquire',function(req, res, next) {
     authentication(req, res);
-    var keyWord = '/' +　req.query.line　+ '/';
+    // var keyWord = '/' +　req.query.line　+ '/';
+    var keyWord = '/' +　req.body['line']　+ '/';
     var reg = eval(keyWord); 
     var KeyWord = {
         name : reg
@@ -162,7 +163,7 @@ function authentication(req, res) {
     if (!req.session.user) {
         console.log(req.session);
         //直接访问 home page 时，进行身份验证
-        req.session.error = "请先登录";
+        req.session.error = "您没有访问权限，请先登录";
         return res.redirect('/login');
     }
 }

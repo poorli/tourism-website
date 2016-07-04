@@ -36,7 +36,7 @@ var Db = require('mongodb').Db,
 
 //session≈‰÷√
 app.use(session({
-    cookie: { maxAge: 60000},
+    cookie: { maxAge: 6000000},
     secret: "foo",
     resave: false,
     saveUninitialized: true,

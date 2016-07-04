@@ -32,7 +32,7 @@ router.route('/add')
 
 	newTourist.findSight(findKey, function(sight){
 		if (sight.join()) {
-			req.session.error = "sight already exist";
+			req.session.error = "景点已存在";
 			res.redirect('/tourist/add');
 		} else {
 			newTourist.insertSight(Sight, function(result) {
@@ -60,7 +60,7 @@ router.route('/delete')
 				console.log('添加景点成功');
 				// req.session.error = "无景点信息，请添加景点";
 				// req.session.error = "无景点信息，请添加景点";
-				req.session.error = "用户名或密码不正确";
+				req.session.error = "请先添加景点";
 				res.redirect('/tourist')
 		}
 	})
@@ -153,7 +153,7 @@ function authentication(req, res) {
     if (!req.session.tourist) {
         console.log(req.session);
         //直接访问 home page 时，进行身份验证
-        req.session.error = "请先登录";
+        req.session.error = "您没有访问权限，请先登录";
         return res.redirect('/login');
     }
 }

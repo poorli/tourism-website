@@ -1,31 +1,59 @@
-//
-   Created by HaoBo on 2016/5/6.
-extends layout
-block title
-    title 注册
-block content
-    h1 用户注册
-    if message
-        p.alert.alert-warning=message
-    form.form-horizontal(method="post" action="/reg")
-        .control-group
-            label.control-label(for="username") 用户名
-            .controls
-                input#username.input-lg(type="text" name="username")
-                p.help-block 您的账户名，用于登陆和显示
-        .control-group
-            label.control-label(for="password") 密码
-            .controls
-                input#password.input-lg(type="password" name="password")
-        //
-            .control-group
-            label.control-label(for="password-repeat") 确认密码
-            .controls
-                input#password-repeat.input-lg(type="password" name="password-repeat")
-        .form-action
-            button.btn.btn-primary(type="submit") 注册
 
-    ul
-        li
-            a(href="/reg/company") 公司注册        
+html
+   include ./includes/head
+   block title
+       title 用户登陆
+   block css
+       link(rel="styleSheet", href='/bower_components/flat/css/login.css')
+block content
+    block condition
+        - var loginType = ""
+        - var anotherType = "company"
+        - var loginTypeName = "公司注册"
+    .login(style="")
+        .login-screen
+            .login-icon
+                img(src="/bower_components/flat/img/login/icon.png" alt="Welcome to youyou")
+                h4 欢迎注册
+                    small 爱旅行
+            .login-form    
+                form(method="post" action="/reg/#{loginType}")
+                    .control-group
+                        input#login-name.login-field.input-larget(type="text" name="username" placeholder="用户名" required)
+                        label.login-field-icon.fui-man-16(for="login-name")
+                    .control-group
+                        input#login-pass.login-field.input-larget(type="password" name="password" placeholder="密码" required)
+                        label.login-field-icon.fui-man-16(for="login-pass")
+                    button.btn.btn-primary.btn-large.btn-block(type="submit") 注册
+                block link
+                    a.login-link(href="/reg/#{anotherType}") #{loginTypeName}
+    if message
+        .btn.btn-large.btn-block.btn-warning(style="width:940px;margin:0 auto")=message  
+
+    include ./includes/footer        
+
+    //- h1 用户注册
+    //- if message
+    //-     p.alert.alert-warning=message
+    //- form.form-horizontal(method="post" action="/reg")
+    //-     .control-group
+    //-         label.control-label(for="username") 用户名
+    //-         .controls
+    //-             input#username.input-lg(type="text" name="username")
+    //-             //- p.help-block 您的账户名，用于登陆和显示
+    //-     .control-group
+    //-         label.control-label(for="password") 密码
+    //-         .controls
+    //-             input#password.input-lg(type="password" name="password")
+    //-     //
+    //-         .control-group
+    //-         label.control-label(for="password-repeat") 确认密码
+    //-         .controls
+    //-             input#password-repeat.input-lg(type="password" name="password-repeat")
+    //-     .form-action
+    //-         button.btn.btn-primary(type="submit") 注册
+
+    //- ul
+    //-     li
+    //-         a(href="/reg/company") 公司注册        
 

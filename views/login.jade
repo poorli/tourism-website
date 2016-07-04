@@ -17,14 +17,14 @@ html
                     .login-icon
                         img(src="/bower_components/flat/img/login/icon.png" alt="Welcome to youyou")
                         h4 欢迎登陆
-                            small 友友
+                            small 爱旅游
                     .login-form    
                         form(method="post" action="/login/#{loginType}")
                             .control-group
-                                input#login-name.login-field.input-larget(type="text" name="username" placeholder="用户名")
+                                input#login-name.login-field.input-larget(type="text" name="username" placeholder="用户名" required)
                                 label.login-field-icon.fui-man-16(for="login-name")
                             .control-group
-                                input#login-pass.login-field.input-larget(type="password" name="password" placeholder="密码")
+                                input#login-pass.login-field.input-larget(type="password" name="password" placeholder="密码" required)
                                 label.login-field-icon.fui-man-16(for="login-pass")
                             button.btn.btn-primary.btn-large.btn-block(type="submit") 登陆
                         block link

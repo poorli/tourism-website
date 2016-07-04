@@ -4,6 +4,9 @@ block title
 block content
 	.container
 		each order, index in orderList
-			.col-lg-4
-				h2
-					span(href="/company/order/info?name=#{order.user}") #{order.user}
+			.col-lg-3
+				ul
+					li  姓名：#{order.name}
+					li 	身份证号码：#{order.id}
+					li 	联系方式：#{order.phone}
+																				

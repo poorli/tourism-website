@@ -120,18 +120,26 @@ router.route('/modify')
 .post(function(req, res, next ) {
 	authentication(req, res);
 	var formerLine = {
-		name: req.body['former_name']
+		"name": req.body['formerName'],
+		"company" : req.body['company']
 	}
 	var newLine = {
-		name: req.body['name'],
-		// address: req.body['address'],
-		price: parseInt(req.body['price']),
-		sight: req.body['sight_name'],
-		// introduce: req.body['introduce']
-	};
+    "name" : req.body['name'],
+    "address" : req.body['address'],
+    "startAddress" : req.body['startAddress'],
+    "endAddress" : req.body['endAddress'],
+    "days" : req.body['days'],
+    "startTime" : req.body['startTime'],
+    "number" : req.body['number'],
+    "price" : req.body['price'],
+    "stay" : req.body['stay'],
+    "sight" : req.body['sight'],
+    "company" : req.body['company']
+}
 	console.log(newLine);
 	// Update the document using an upsert operation, ensuring creation if it does not exist
 	newCompany.modifyLine(formerLine, newLine, function(result) {
+		req.session.error = "修改线路成功"
 		res.redirect('/company/modify');
 	});
 })
@@ -192,7 +200,7 @@ router.route('/user')
 .get(function(req, res, next) {
 	authentication(req, res);
 	Line = {
-		line: req.query.name
+		lineName: req.query.name
 	}
     newCompany.findLineOrder(Line, function(order){
         if (order.join()) {
@@ -203,6 +211,8 @@ router.route('/user')
             // newTourist.insert(Sight, function(result) {
                 console.log('添加景点成功');
                 // res.redirect('/tourist/add');
+                req.session.error = "此线路无预定信息";
+                res.redirect('/company');
             // })
         }
     })

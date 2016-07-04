@@ -2,33 +2,33 @@
    Created by HaoBo on 2016/5/6.
 extends layout
 block title
-    title 注册
+    title 公司注册
 block content
-    h1 用户注册
+    h4 公司注册
     if message
         p.alert.alert-warning=message
     form.form-horizontal(method="post" action="/reg/company")
         .control-group
             label.control-label(for="username") 用户名
             .controls
-                input#username.input-lg(type="text" name="username")
+                input#username.input-lg(type="text" name="username" required)
                 p.help-block 您的账户名，用于登陆和显示
         .control-group
             label.control-label(for="password") 密码
             .controls
-                input#password.input-lg(type="password" name="password")
+                input#password.input-lg(type="password" name="password" required)
         .control-group
             label.control-label(for="name") 公司名称
             .controls
-                input#name.input-lg(type="text" name="name")
+                input#name.input-lg(type="text" name="name" required)
         .control-group
             label.control-label(for="address") 公司地址    
             .controls
-                input#address.input-lg(type="text" name="address")
+                input#address.input-lg(type="text" name="address" required)
         .control-text
             label.control-label(for="introduce") 公司介绍
             .controls
-                input#introduce.input-lg(type="text" name="introduce")                                    
+                input#introduce.input-lg(type="text" name="introduce" required)                                    
         //
             .control-group
             label.control-label(for="password-repeat") 确认密码

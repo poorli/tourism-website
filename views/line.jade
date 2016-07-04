@@ -5,62 +5,63 @@ block title
 //- block css
 block content
 	.control-group
-				label.control-label(for="name") 路线名称
-				.controls
-					input#name.input-lg(type="text" name="name" value=line.name required)
-			.control-group
-				label.control-label(for="address") 地点
-				.controls
-					input#address.input-lg(type="text" name="address" value=line.address required)
-			.control-group
-				label.control-label(for="startAddress" required) 起点
-				.controls
-					input#startAddress.input-lg(type="text" name="startAddress" value=line.startAddress)
-			.control-group
-				label.control-label(for="endAddress") 终点
-				.controls
-					input#endAddress.input-lg(type="text" name="endAddress" value=line.endAddress required)
-			.control-group
-				label.control-label(for="days") 旅游天数
-				.controls
-					input#days.input-lg(type="number" name="days" value=line.days)
-			.control-group
-				label.control-label(for="startTime" required) 出发时间
-				.controls
-					- var newDate = new Date()
-					- var month = newDate.getMonth()+1
-					- var day = newDate.getDate()
-					if month < 10
-						- month = "0"+month
-					if day < 10
-						- day = "0"+day	
-					- var dateString = newDate.getFullYear()+"-"+month+"-"+day
-					input#startTime.input-lg(type="date" name="startTime" value=line.startTime min=dateString)
-			.control-group
-				label.control-label(for="number") 人数限制
-				.controls
-					input#number.input-lg(type="number" name="number" value=line.number min="1" required)
-			.control-group
-				label.control-label(for="price") 价格
-				.controls
-					input#price.input-lg(type="number" name="price" value=line.price required)
-			.control-group
-				label.control-label(for="stay") 住宿信息
-				.controls
-					input#stay.input-lg(type="text" name="stay" value=line.stay)
-			if line.sight instanceof Array			
-				each selectedSight in line.sight
-					.sight
-						select.sightList(name="sight")
-							each sight, index in sightList
-								if sight.name==selectedSight
-									option(value="#{sight.name}" selected="selected") #{sight.name}
-								else
-									option(value="#{sight.name}") #{sight.name}
-			else
+		label.control-label(for="name") 路线名称
+		.controls
+			input#name.input-lg(type="text" name="name" value=line.name required)
+	.control-group
+		label.control-label(for="address") 地点
+		.controls
+			input#address.input-lg(type="text" name="address" value=line.address required)
+	.control-group
+		label.control-label(for="startAddress" required) 起点
+		.controls
+			input#startAddress.input-lg(type="text" name="startAddress" value=line.startAddress)
+	.control-group
+		label.control-label(for="endAddress") 终点
+		.controls
+			input#endAddress.input-lg(type="text" name="endAddress" value=line.endAddress required)
+	.control-group
+		label.control-label(for="days") 旅游天数
+		.controls
+			input#days.input-lg(type="number" name="days" value=line.days)
+	.control-group
+		label.control-label(for="startTime" required) 出发时间
+		.controls
+			- var newDate = new Date()
+			- var month = newDate.getMonth()+1
+			- var day = newDate.getDate()
+			if month < 10
+				- month = "0"+month
+			if day < 10
+				- day = "0"+day	
+			- var dateString = newDate.getFullYear()+"-"+month+"-"+day
+			input#startTime.input-lg(type="date" name="startTime" value=line.startTime min=dateString)
+	.control-group
+		label.control-label(for="number") 人数限制
+		.controls
+			input#number.input-lg(type="number" name="number" value=line.number min="1" required)
+	.control-group
+		label.control-label(for="price") 价格
+		.controls
+			input#price.input-lg(type="number" name="price" value=line.price required)
+	.control-group
+		label.control-label(for="stay") 住宿信息
+		.controls
+			input#stay.input-lg(type="text" name="stay" value=line.stay)
+	if line.sight instanceof Array			
+		each selectedSight in line.sight
+			.sight
 				select.sightList(name="sight")
-							option(value="#{line.sight}") #{line.sight}
+					each sight, index in sightList
+						if sight.name==selectedSight
+							option(value="#{sight.name}" selected="selected") #{sight.name}
+						else
+							option(value="#{sight.name}") #{sight.name}
+	else
+		select.sightList(name="sight")
+					option(value="#{line.sight}") #{line.sight}
 	form#line.form-horizontal(method="post" action="/user/order")
+		input(type="hidden" name="lineName" value=line.name required)
 		.control-group
 			label.control-label(for="name") 姓名
 			.controls
