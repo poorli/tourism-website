@@ -10,20 +10,29 @@ var newCompany = new Company();
 var newTourist = new Tourist();
 
 //首页
-router.get('/', function (req, res, next) {
-    if (!req.session.user){
-        res.render('index');
-    }else {
-        var post = new Post();
-        post.find({}, function(posts){
-            console.log("have session");
-            res.render('loginIndex',{
-                user: req.session.user,
-                posts: posts
-            });
-        });
+router.get('/',function(req, res, next) {
+    var isLogin;
+    if (req.session.user||req.session.company||req.session.tourist) {
+        isLogin = true; 
     }
-});
+    res.render('index',{
+        isLogin: isLogin
+    });
+})
+// router.get('/', function (req, res, next) {
+//     if (!req.session.user){
+//         res.render('index');
+//     }else {
+//         var post = new Post();
+//         post.find({}, function(posts){
+//             console.log("have session");
+//             res.render('loginIndex',{
+//                 user: req.session.user,
+//                 posts: posts
+//             });
+//         });
+//     }
+// });
 
 
         //}

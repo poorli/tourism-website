@@ -39,7 +39,7 @@ router.route('/')
 
 router.route('/company')
 .get(function (req, res, next) {
-    res.render('company_reg');
+    res.render('reg_company');
 })
 .post(function (req, res, next) {
     var regUser = {

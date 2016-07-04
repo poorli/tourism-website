@@ -4,23 +4,23 @@ block display
 		.control-group
 			label.control-label(for="name") 景点名称
 			.controls
-				input#name.input-lg(type="text" name="name")
+				input#name.input-lg(type="text" name="name" required)
 		.control-group
 			label.control-label(for="item") 景点项目
 			.controls
-				input#item.input-lg(type="text" name="item")					
+				input#item.input-lg(type="text" name="item" required)					
 		.control-group
 			label.control-label(for="address") 景点地址
 			.controls
-				input#address.input-lg(type="text" name="address")
+				input#address.input-lg(type="text" name="address" required)
 		.control-group
 			label.control-label(for="price") 景点价格
 			.controls
-				input#price.input-lg(type="text" name="price")
+				input#price.input-lg(type="number" name="price" required)
 		.control-group
 			label.control-label(for="time") 开放时间
 			.controls
-				input#time.input-lg(type="text" name="time" placeholder="请输入正确的开放时间")
+				input#time.input-lg(type="text" name="time" placeholder="")
 		.control-group
 			label.control-label(for="introduce") 景点介绍
 			.controls

@@ -6,37 +6,40 @@ nav.navbar.navbar-default
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            a.navbar-brand.hidden-sm(href="/") 友友
+            a.navbar-brand.hidden-sm(href="/") 爱旅行
 
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
                 li.active: a(href="/"): span.sr-only 首页
-                li: a(href="") 线路
-                li: a(href="") 景点   
+                li: a(href="/user/linelist") 线路
+                li: a(href="/user/sightlist") 景点
+                li: a(href="/user/inquire") 查询   
             if (user)
                 ul.nav.navbar-nav.navbar-right
-                    li.dropdown
-                        a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{user.username}
-                            span.caret
-                        ul.dropdown-menu
-                            li: a(href='/home') 个人中心
-                            li: a(href='/loginout/user') 退出
+                    //- li.dropdown
+                    //-     a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{user.username}
+                    //-         span.caret
+                    //-     ul.dropdown-menu
+                    //-         li: a(href='/home') 个人中心
+                    li: a(href='/loginout/user') 退出
             else
                 if (company)
                     ul.nav.navbar-nav.navbar-right
-                        li.dropdown
-                            a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"): span.caret #{company.username}
-                            ul.dropdown-menu
+                        //- li.dropdown
+                        //-     a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"):  #{company.username}
+                        //-         span.caret
+                        //-     ul.dropdown-menu
                                 li: a(href='/home') 个人中心
-                                li: a(href='/loginout/company') 退出
+                        li: a(href='/loginout/company') 退出
                 else
                     if (tourist)
                         ul.nav.navbar-nav.navbar-right
-                            li.dropdown
-                                a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"): span.caret #{tourist.username}
-                                ul.dropdown-menu
-                                    li: a(href='/home') 个人中心
-                                    li: a(href='/loginout/tourist') 退出
+                            //-     li.dropdown
+                            //-         a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"):{tourist.username}
+                            //-             span.caret
+                            //-         ul.dropdown-menu
+                            //-             li: a(href='/home') 个人中心
+                            li: a(href='/loginout/tourist') 退出
                     else
                         ul.nav.navbar-nav.navbar-right
                             li: a(href="/login") 登录

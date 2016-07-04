@@ -15,9 +15,7 @@ var newTourist = new Tourist();
 //登录
 router.route('/')
 .get(function (req, res, next) {
-    res.render('login',{
-        user: req.session.user
-    });
+    res.render('login');
 })
 router.route('/user')
 .get(function (req, res, next) {

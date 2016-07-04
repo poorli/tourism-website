@@ -12,7 +12,8 @@ var newUser = new User();
  
 router.get('/', function (req, res, next) {
     if (!req.session.user){
-        res.render('index');
+        // res.render('index');
+        res.render('user');
     }else {
         res.render('user');
     }
@@ -20,7 +21,7 @@ router.get('/', function (req, res, next) {
 
 router.route('/sightlist')
 .get(function(req, res, next) {
-    authentication(req, res);
+    // authentication(req, res);
     newTourist.findSight({}, function(sight){
         if (sight.join()) {
             console.log(sight);
@@ -38,7 +39,7 @@ router.route('/sightlist')
 
 router.route('/linelist')
 .get(function(req, res, next) {
-    authentication(req, res);
+    // authentication(req, res);
     var sightList;
     newCompany.findLine({}, function(line){
         if (line.join()) {
@@ -134,6 +135,9 @@ router.route('/order')
 
 
 router.get('/inquire',function(req, res, next) {
+    res.render('user');
+})
+router.post('/inquire',function(req, res, next) {
     authentication(req, res);
     var keyWord = '/' +　req.query.line　+ '/';
     var reg = eval(keyWord); 
@@ -142,7 +146,7 @@ router.get('/inquire',function(req, res, next) {
     }
     newUser.inquireSight(KeyWord, function (lineList) {
         if (lineList.join()) {
-            res.render('line_all', {
+            res.render('line_search', {
                 lineList: lineList
             });
         }

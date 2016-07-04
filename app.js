@@ -48,9 +48,9 @@ app.use(session({
 //app.use(express.compress());
 //错误信息处理
 app.use(function(req, res, next){
-    // res.locals.user = req.session.user;
-    // res.locals.company = req.session.company;
-    // res.locals.tourist = req.session.tourist;
+    res.locals.user = req.session.user;
+    res.locals.company = req.session.company;
+    res.locals.tourist = req.session.tourist;
     var err = req.session.error;
     delete req.session.error;
     res.locals.message = "";

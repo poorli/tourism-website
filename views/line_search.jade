@@ -1,0 +1,9 @@
+extends user
+block title
+	title 线路
+
+block result
+	.container(style="margin-top:100px")
+		each line, index in lineList
+			.col-lg-3
+				a(href="/user/line/?name=#{line.name}") #{line.name}
