@@ -6,7 +6,7 @@ var MongoClient = Db.MongoClient;
 var assert = require('assert');
 var url = Db.Setting.url;
 
-var DbOperation = require('./dbOPeration');
+var DbOperation = require('./dbOperation');
 
 var Operation = new DbOperation();
 
