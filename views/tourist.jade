@@ -4,16 +4,15 @@ block title
 //- block css
 block content
 	block list
-		ul
-			li
-				a(href="/tourist/add") 增加景点
-			li
-				a(href="/tourist/modification") 修改景点
-			li
-				a(href="/tourist/look") 查看反馈
-			li
-				a(href="/tourist/delete") 删除景点
-	.right
+		.col-lg-3
+			ul.todo.mrm
+				li
+					a(href="/tourist/add") 增加景点
+				li
+					a(href="/tourist/modification") 修改景点
+				li
+					a(href="/tourist/delete") 删除景点
+	.col-lg-9
 		if message
 			p.alert.alert-warning=message			
 		block display

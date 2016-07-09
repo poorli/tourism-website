@@ -55,7 +55,7 @@ router.route('/linelist')
 
 router.route('/line')
 .get(function(req, res, next) {
-    authentication(req, res);
+    // authentication(req, res);
     console.log(req.query.name);
     var findKey = {
         name: req.query.name
@@ -90,7 +90,7 @@ router.route('/line')
 
 router.route('/sight')
 .get(function(req, res, next) {
-    authentication(req, res);
+    // authentication(req, res);
     console.log(req.query.name);
     var findKey = {
         name: req.query.name
@@ -138,7 +138,7 @@ router.get('/inquire',function(req, res, next) {
     res.render('user');
 })
 router.post('/inquire',function(req, res, next) {
-    authentication(req, res);
+    // authentication(req, res);
     // var keyWord = '/' +　req.query.line　+ '/';
     var keyWord = '/' +　req.body['line']　+ '/';
     var reg = eval(keyWord); 

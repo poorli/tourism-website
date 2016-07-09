@@ -9,15 +9,14 @@ var newTourist = new Tourist();
 
 router.route('/')
 .get(function(req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	res.render('company');
 })
 
 router.route('/add')
 .get(function(req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	// newTourist.deleteSight({name:"天安门"});
-	var sightList;
 	//找出所有景点供选择路线
 	newTourist.findSight({}, function(sight){
 		if (sight.join()) {
@@ -37,7 +36,7 @@ router.route('/add')
 	})
 })
 .post(function (req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	console.log(req.body);
 	var lineName = {
 		name: req.body['name']
@@ -59,7 +58,7 @@ router.route('/add')
 
 router.route('/delete')
 .get(function(req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	var lineList = {
 		company: req.session.company.username
 	}
@@ -79,7 +78,7 @@ router.route('/delete')
 	})
 })
 .post(function(req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	var deleteKey = {
 		name: req.body['name']
 	};
@@ -100,7 +99,7 @@ router.route('/delete')
 
 router.route('/modify')
 .get(function(req, res, next) {
-	authentication(req, res);
+	// authentication(req, res);
 	var lineList = {
 		company: req.session.company.username
 	}
@@ -118,7 +117,7 @@ router.route('/modify')
 	})
 })
 .post(function(req, res, next ) {
-	authentication(req, res);
+	// authentication(req, res);
 	var formerLine = {
 		"name": req.body['formerName'],
 		"company" : req.body['company']

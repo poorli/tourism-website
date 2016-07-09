@@ -3,8 +3,8 @@ block title
 	title 某某旅游局
 block display
 	form(method="post" action="/tourist/delete" )
-		select#sight(name="name")
+		select#sight.lg(name="name")
 			each sight, index in sightList
 				option(value="#{sight.name}") #{sight.name}
 			//- option(value="#{sight.name}") #{sight.name} 
-		input#submit(type="submit", name="submit" value="删除景点")			
+		input#submit.btn.btn-primary(type="submit", name="submit" value="删除景点")			
